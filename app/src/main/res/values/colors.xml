@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#10181F</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    <color name="welcomeScreen_colorPrimary">#10181F</color>
+    <color name="welcomeScreen_colorAccent">#10181F</color>
+    <color name="welcomeScreen_colorPrimaryDark">#10181F</color>
+    <color name="welcomeScreen_background">#10181F</color>
+
+
+    <color name="MainActivity_colorPrimary">#10181F</color>
+    <color name="MainActivity_colorAccent">#D81B60</color>
+    <color name="MainActivity_colorPrimaryDark">#10181F</color>
+    <color name="MainActivity_background">#10181F</color>
+
 </resources>
