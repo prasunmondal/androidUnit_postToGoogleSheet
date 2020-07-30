@@ -1,0 +1,71 @@
+function doPost(e){
+  var action = e.parameter.action;
+  if(action == 'addItem'){
+    return addItem(e);
+  }
+}
+
+function addItem(e){
+  var spreadsheetURL = e.parameter.spreadsheetURL;
+  var sheetName = e.parameter.sheetName;
+
+  switch(sheetName) { // select tabname
+    case "02:15:B2:00:00:00":      sheetName = "me_Emu01";      break;
+
+    case "36:78:0C:DF:87:6E":
+    case "22:31:12:BC:F7:B8":      sheetName = "N8.1";        break;
+
+    case "A2:50:09:34:DD:99":      sheetName = "Sanket";      break;
+
+    case "20:34:FB:74:C1:35":      sheetName = "Bumba";      break;
+
+    case "B6:A1:9A:71:44:92":      sheetName = "Jana";      break;
+
+    case "78:02:F8:C6:EF:79":
+    case "DU:MM:YA:DD:RE:SS0":      sheetName = "Chorbi";      break;
+
+    case "2C:A9:F0:80:2C:A1":      sheetName = "Bati";      break;
+
+    default:     break;
+  }
+
+  var date =  new Date();
+  var text = e.parameter.text;
+  var texts = [{}];
+
+  var ss = SpreadsheetApp.openByUrl(spreadsheetURL);
+
+  var lock = LockService.getScriptLock();
+  try {
+    lock.waitLock(300000); // wait 300 seconds for others' use of the code section and lock to stop and then proceed
+  } catch (e) {
+    Logger.log('Could not obtain lock after 300 seconds.');
+  }
+  var sheet = ss.getSheetByName(sheetName);
+  if (!sheet) {
+    Logger.log("sheet not available")
+    duplicateTab(e, sheetName)
+    var sheet = ss.getSheetByName(sheetName);
+  }
+
+  texts = [date].concat(text.split("◔"));
+  sheet.appendRow(texts);
+  lock.releaseLock()
+
+  return ContentService.createTextOutput("Success").setMimeType(ContentService.MimeType.TEXT);
+}
+
+function duplicateTab(e, sheetName) {
+
+  var spreadsheetURL = e.parameter.spreadsheetURL;
+  var templateSheetName = 'Template'
+
+  var ss        = SpreadsheetApp.openByUrl(spreadsheetURL);
+
+  var template = ss.getSheetByName(templateSheetName);
+  if (!template) {
+    ss.insertSheet(sheetName);
+  } else {
+    template.copyTo(ss).setName(sheetName);
+  }
+}
