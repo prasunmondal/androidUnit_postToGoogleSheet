@@ -10,8 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        PostToSheets.Singleton.instance.po.post(mutableListOf("startTime","endTime","calcTime"), true,this)
-        PostToSheets.Singleton.instance.po.postIntoTab(mutableListOf("startTime","endTime","calcTime"),"newTab", true,this)
-        PostToSheets.Singleton.instance.po.post(mutableListOf("startTime","endTime","calcTime"),true, this)
+        PostToSheets.Singleton.instance.qo.post(mutableListOf("startTime","endTime","calcTime"),this)
+        PostToSheets.Singleton.instance.qo.postIntoTab(mutableListOf("startTime","endTime","calcTime"),"newTab",this)
+        PostToSheets.Singleton.instance.qo.post(mutableListOf("startTime","endTime","calcTime"), this)
     }
 }
