@@ -11,7 +11,7 @@ import com.android.volley.toolbox.StringRequest
 import java.text.SimpleDateFormat
 import java.util.*
 
-class PostToSheet_DO_NOT_USE(
+class PostToSheetDONOTUSE(
     private var scriptURL: String,
     private var sheet_output_URL: String,
     private var sheet_output_name: String,
@@ -21,7 +21,13 @@ class PostToSheet_DO_NOT_USE(
     var prependList: List<String>?
 ) {
 
-    private fun write(context: Context, scriptID: String, spreadsheetURL: String, sheetName: String, list: List<String>) {
+    private fun write(
+        context: Context,
+        scriptID: String,
+        spreadsheetURL: String,
+        sheetName: String,
+        list: List<String>
+    ) {
         val sendString = TextUtils.join("◔", list)
 
         val stringRequest: StringRequest =
@@ -48,37 +54,37 @@ class PostToSheet_DO_NOT_USE(
         queue.add(stringRequest)
     }
 
-
     @SuppressLint("SimpleDateFormat")
     fun post(list: List<String>, context: Context) {
-        if(PostToSheets().skipPost())
+        if (PostToSheets().skipPost())
             return
         val constructList: MutableList<String> = mutableListOf()
         try {
             val format = "yyyy-MM-dd HH:mm:ss:SSS"
             val sdf = SimpleDateFormat(format)
 
-            if(this.prependTimestamp) {
+            if (this.prependTimestamp) {
                 constructList.add(0, sdf.format(Date()))
             }
-            if(!this.prependList.isNullOrEmpty()) {
+            if (!this.prependList.isNullOrEmpty()) {
                 constructList.addAll(prependList!!)
             }
             constructList.addAll(list)
-            write(context,
+            write(
+                context,
                 this.scriptURL,
                 this.sheet_output_URL,
                 this.sheet_output_name,
-                constructList)
+                constructList
+            )
         } catch (e: Exception) {
         }
     }
 
-    fun postIntoTab(list: MutableList<String>, tabName: String, context: Context) {
+    fun postIntoTab(list: List<String>, tabName: String, context: Context) {
         val temp = this.sheet_output_name
         this.sheet_output_name = tabName
         post(list, context)
         this.sheet_output_name = temp
     }
 }
-

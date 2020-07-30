@@ -10,10 +10,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        PostToSheets.Singleton.instance.qo.post(mutableListOf("startTime","endTime","calcTime"),this)
+        PostToSheets.Singleton.instance.qo.post(listOf("startTime","endTime","calcTime"),this)
         PostToSheets.Singleton.instance.qo.prependList = listOf("Prasun Mondal")
-        PostToSheets.Singleton.instance.qo.postIntoTab(mutableListOf("startTime","endTime","calcTime"),"newTab",this)
-        PostToSheets.Singleton.instance.qo.post(mutableListOf("startTime","endTime","calcTime"), this)
+        PostToSheets.Singleton.instance.qo.postIntoTab(listOf("startTime","endTime","calcTime"),"newTab",this)
+        PostToSheets.Singleton.instance.qo.post(listOf("startTime","endTime","calcTime"), this)
 
     }
 }
