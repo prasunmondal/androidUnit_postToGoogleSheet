@@ -7,7 +7,7 @@ class PostToSheets {
             "test",
             "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0",
             "run_logs",
-            true
+            true, null
         )
 
     var qo: PostToSheet_DO_NOT_USE =
@@ -16,7 +16,7 @@ class PostToSheets {
             "test",
             "https://docs.google.com/spreadsheets/d/1gZA5tqllOArlLJb2nLcmLqfNR-cdgFzNqTl9ZKyzcOI/edit#gid=0",
             "run_logs",
-            true
+            true, listOf("Prasun")
         )
 
     object Singleton {
