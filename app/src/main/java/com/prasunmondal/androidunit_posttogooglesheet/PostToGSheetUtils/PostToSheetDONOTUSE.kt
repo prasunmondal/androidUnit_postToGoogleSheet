@@ -13,10 +13,10 @@ import java.util.*
 
 class PostToSheetDONOTUSE(
     private var scriptURL: String,
-    private var sheet_output_URL: String,
-    private var sheet_output_name: String,
-    private var template_output_URL: String,
-    private var template_output_name: String,
+    private var sheetURL: String,
+    private var sheetTabname: String,
+    private var templateSheetURL: String,
+    private var templateSheetTabname: String,
     private var prependTimestamp: Boolean,
     var prependList: List<String>?
 ) {
@@ -26,6 +26,8 @@ class PostToSheetDONOTUSE(
         scriptID: String,
         spreadsheetURL: String,
         sheetName: String,
+        templateSheetURL: String,
+        templateSheetTabname: String,
         list: List<String>
     ) {
         val sendString = TextUtils.join("◔", list)
@@ -42,6 +44,8 @@ class PostToSheetDONOTUSE(
                     params["action"] = "addItem"
                     params["spreadsheetURL"] = spreadsheetURL
                     params["sheetName"] = sheetName
+                    params["templateSheetURL"] = templateSheetURL
+                    params["templateTabName"] = templateSheetTabname
                     params["text"] = sendString
                     return params
                 }
@@ -73,8 +77,10 @@ class PostToSheetDONOTUSE(
             write(
                 context,
                 this.scriptURL,
-                this.sheet_output_URL,
-                this.sheet_output_name,
+                this.sheetURL,
+                this.sheetTabname,
+                this.templateSheetURL,
+                this.templateSheetTabname,
                 constructList
             )
         } catch (e: Exception) {
@@ -82,9 +88,9 @@ class PostToSheetDONOTUSE(
     }
 
     fun postIntoTab(list: List<String>, tabName: String, context: Context) {
-        val temp = this.sheet_output_name
-        this.sheet_output_name = tabName
+        val temp = this.sheetTabname
+        this.sheetTabname = tabName
         post(list, context)
-        this.sheet_output_name = temp
+        this.sheetTabname = temp
     }
 }
