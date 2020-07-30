@@ -1,5 +1,6 @@
 package com.prasunmondal.androidunit_posttogooglesheet.PostToGSheetUtils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.text.TextUtils
 import com.android.volley.DefaultRetryPolicy
@@ -48,6 +49,7 @@ class PostToSheet_DO_NOT_USE(
     }
 
 
+    @SuppressLint("SimpleDateFormat")
     fun post(list: List<String>, context: Context) {
         val constructList: MutableList<String> = mutableListOf()
         try {
