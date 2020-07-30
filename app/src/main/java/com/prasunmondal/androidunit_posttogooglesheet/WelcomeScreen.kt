@@ -32,7 +32,7 @@ class WelcomeScreen : AppCompatActivity() {
             finish()
         }, 1500)
 
-        postTo("Logs").post();
+//        devLogs.post("Logs").post();
     }
 
     private fun hide() {
