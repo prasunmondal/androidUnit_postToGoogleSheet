@@ -46,7 +46,6 @@ class PostProfile(scriptURL: String, sheet_output_URL: String,
                 override fun getParams(): Map<String, String> {
                     val params: MutableMap<String, String> =
                         HashMap()
-                    //here we pass params
                     params["action"] = "addItem"
                     params["spreadsheetURL"] = spreadsheetURL
                     params["sheetName"] = sheetName
@@ -63,8 +62,7 @@ class PostProfile(scriptURL: String, sheet_output_URL: String,
     }
 
 
-    fun post(startTime: String, endTime: String, calculatedTime: String, context: Context) {
-
+    fun post(list: MutableList<String>, prependTimestamp: Boolean, context: Context) {
         var isDev = false
 
         if(isDev)
@@ -77,13 +75,24 @@ class PostProfile(scriptURL: String, sheet_output_URL: String,
             val sdf = SimpleDateFormat(format)
             dateFormat.timeZone = TimeZone.getTimeZone("IST")
 
+            if(prependTimestamp) {
+                list.add(0, "0")
+            }
+
             write(context,
                 this.scriptURL,
                 this.sheet_output_URL,
                 this.sheet_output_name,
-                listOf(sdf.format(Date())))
+                list)
         } catch (e: Exception) {
         }
+    }
+
+    fun postIntoTab(list: MutableList<String>, tabName: String, appendTimestamp: Boolean, context: Context) {
+        var temp = this.sheet_output_name
+        this.sheet_output_name = tabName
+        post(list, appendTimestamp, context)
+        this.sheet_output_name = temp
     }
 }
 
