@@ -20,7 +20,6 @@ class PostToSheetDONOTUSE(
     private var prependTimestamp: Boolean,
     var prependList: List<String>?
 ) {
-
     private fun write(
         context: Context,
         scriptID: String,
