@@ -18,7 +18,7 @@ class PostToSheetDONOTUSE(
     private var templateSheetURL: String,
     private var templateSheetTabname: String,
     private var prependTimestamp: Boolean,
-    var prependList: List<String>?
+    private var prependList: List<String>?
 ) {
     private fun write(
         context: Context,
@@ -91,5 +91,9 @@ class PostToSheetDONOTUSE(
         this.sheetTabname = tabName
         post(list, context)
         this.sheetTabname = temp
+    }
+
+    fun update_prependList(list: List<String>?) {
+        this.prependList = list
     }
 }
