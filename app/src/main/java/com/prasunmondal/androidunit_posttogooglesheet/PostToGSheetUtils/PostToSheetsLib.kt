@@ -51,6 +51,8 @@ class PostToSheet_DO_NOT_USE(
 
     @SuppressLint("SimpleDateFormat")
     fun post(list: List<String>, context: Context) {
+        if(PostToSheets().skipPost())
+            return
         val constructList: MutableList<String> = mutableListOf()
         try {
             val format = "yyyy-MM-dd HH:mm:ss:SSS"
