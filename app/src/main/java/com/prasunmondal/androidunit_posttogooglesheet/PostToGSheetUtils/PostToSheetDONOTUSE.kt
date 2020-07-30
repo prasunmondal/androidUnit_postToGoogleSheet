@@ -93,7 +93,7 @@ class PostToSheetDONOTUSE(
         this.sheetTabname = temp
     }
 
-    fun update_prependList(list: List<String>?) {
+    fun updatePrependList(list: List<String>?) {
         this.prependList = list
     }
 }
